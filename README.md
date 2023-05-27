@@ -1,5 +1,7 @@
 # Go-1-Library
 
+[![Go package](https://github.com/nickolasrm-Learn/Go-2-Library/actions/workflows/test.yaml/badge.svg)](https://github.com/nickolasrm-Learn/Go-2-Library/actions/workflows/test.yaml)
+
 ## Description
 
 Library management system using Go. This package manipulates a JSON file and execute
