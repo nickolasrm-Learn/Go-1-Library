@@ -19,7 +19,7 @@ jobs:
 
       - name: Lint
         run: |
-          go get -u golang.org/x/lint/golint
+          apt-get install golint
           golint -set_exit_status ./...
 
       - name: Test
