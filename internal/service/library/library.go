@@ -17,6 +17,7 @@ type Library struct {
 	Purchases map[string]*purchase.Purchase
 }
 
+// LibraryPath is the path to the library file
 var LibraryPath = "library.json"
 
 // Load a library object from a JSON file

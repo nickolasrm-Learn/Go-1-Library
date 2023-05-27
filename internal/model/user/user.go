@@ -13,13 +13,13 @@ type User struct {
 	Budget float64
 }
 
-// Create a new user with random ID
+// New creates a new user with random ID
 func New(name string) *User {
 	id := util.NewID()
 	return &User{ID: id, Name: name}
 }
 
-// Subtract value from user budget
+// Spend subtracts value from user budget
 //
 // Returns an error if user doesn't have enough budget
 func (u *User) Spend(value float64) error {
@@ -30,7 +30,7 @@ func (u *User) Spend(value float64) error {
 	return fmt.Errorf("user %q doesn't have enough budget", u.Name)
 }
 
-// Add value to user budget
+// Deposit adds value to user budget
 func (u *User) Deposit(value float64) {
 	u.Budget += value
 }

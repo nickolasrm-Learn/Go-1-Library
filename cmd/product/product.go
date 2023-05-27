@@ -16,8 +16,8 @@ var add = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		cat_string, _ := cmd.Flags().GetString("category")
-		category := product.Category(cat_string)
+		catString, _ := cmd.Flags().GetString("category")
+		category := product.Category(catString)
 		err = category.Validate()
 		if err != nil {
 			return err

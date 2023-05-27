@@ -6,14 +6,17 @@ import (
 	"github.com/nickolasrm-Learn/Go-2-Library/internal/util"
 )
 
+// Category represents the string category of a product
 type Category string
 
 const (
-	CD   Category = "cd"
+	// CD represents the CD category
+	CD Category = "cd"
+	// Book represents the Book category
 	Book Category = "book"
 )
 
-// Checks if the category is valid
+// Validate checks if the category is valid
 func (c Category) Validate() error {
 	switch c {
 	case CD, Book:

@@ -11,5 +11,8 @@ run: ## Run the application passing ARGS to the application
 build: ## Build the application binary
 	go build -o lib main.go
 
+lint: ## Run the linter
+	golint -set_exit_status ./...
+
 test: ## Run the tests
 	go test -v ./...
