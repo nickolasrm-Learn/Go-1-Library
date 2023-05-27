@@ -19,7 +19,7 @@ func New(name string) *User {
 }
 
 func (u *User) Spend(value float64) error {
-	if u.Budget > value {
+	if u.Budget >= value {
 		u.Budget -= value
 		return nil
 	}

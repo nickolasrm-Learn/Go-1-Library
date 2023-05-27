@@ -16,8 +16,10 @@ type Library struct {
 	Purchases map[string]*purchase.Purchase
 }
 
+var LibraryPath = "library.json"
+
 func Load() (*Library, error) {
-	content, err := os.ReadFile("library.json")
+	content, err := os.ReadFile(LibraryPath)
 	if err != nil {
 		return nil, nil
 	}
@@ -34,7 +36,7 @@ func (l *Library) Save() error {
 	if err != nil {
 		return err
 	}
-	err = os.WriteFile("library.json", jsonString, 0644)
+	err = os.WriteFile(LibraryPath, jsonString, 0644)
 	if err != nil {
 		return err
 	}
