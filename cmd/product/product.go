@@ -31,6 +31,7 @@ var add = &cobra.Command{
 	},
 }
 
+// Add configures and returns the add command
 func Add() *cobra.Command {
 	add.Flags().String("title", "", "Name of the product")
 	add.MarkFlagRequired("title")
@@ -60,6 +61,7 @@ var list = &cobra.Command{
 	},
 }
 
+// List configures and returns the list command
 func List() *cobra.Command {
 	return list
 }
@@ -69,6 +71,7 @@ var productCmd = &cobra.Command{
 	Short: "Product manipulation commands",
 }
 
+// Product configures and returns the product group
 func Product() *cobra.Command {
 	productCmd.AddCommand(Add())
 	productCmd.AddCommand(List())

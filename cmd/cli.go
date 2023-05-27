@@ -23,12 +23,14 @@ var versionCmd = &cobra.Command{
 	},
 }
 
+// Init initializes the CLI
 func Init() {
 	rootCmd.AddCommand(versionCmd)
 	rootCmd.AddCommand(product.Product())
 	rootCmd.AddCommand(user.User())
 }
 
+// Execute executes the CLI
 func Execute() {
 	Init()
 	if err := rootCmd.Execute(); err != nil {

@@ -6,6 +6,7 @@ import (
 	"github.com/nickolasrm-Learn/Go-2-Library/internal/util"
 )
 
+// User represents a user of the library
 type User struct {
 	ID     string
 	Name   string
@@ -18,6 +19,9 @@ func New(name string) *User {
 	return &User{ID: id, Name: name}
 }
 
+// Subtract value from user budget
+//
+// Returns an error if user doesn't have enough budget
 func (u *User) Spend(value float64) error {
 	if u.Budget >= value {
 		u.Budget -= value
@@ -26,10 +30,12 @@ func (u *User) Spend(value float64) error {
 	return fmt.Errorf("user %q doesn't have enough budget", u.Name)
 }
 
+// Add value to user budget
 func (u *User) Deposit(value float64) {
 	u.Budget += value
 }
 
+// String returns a string representation of the user
 func (u *User) String() string {
 	return fmt.Sprintf("User(name=%q, budget=%v)", u.Name, u.Budget)
 }

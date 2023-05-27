@@ -23,6 +23,7 @@ var add = &cobra.Command{
 	},
 }
 
+// Add configures and returns the add command
 func Add() *cobra.Command {
 	add.Flags().String("name", "", "Name of the user")
 	add.MarkFlagRequired("name")
@@ -47,6 +48,7 @@ var view = &cobra.Command{
 	},
 }
 
+// View configures and returns the view command
 func View() *cobra.Command {
 	view.Flags().String("user", "", "ID of the user")
 	view.MarkFlagRequired("user")
@@ -74,6 +76,7 @@ var deposit = &cobra.Command{
 	},
 }
 
+// Deposit configures and returns the deposit command
 func Deposit() *cobra.Command {
 	deposit.Flags().String("user", "", "ID of the user")
 	deposit.MarkFlagRequired("user")
@@ -111,6 +114,7 @@ var buy = &cobra.Command{
 	},
 }
 
+// Buy configures and returns the buy command
 func Buy() *cobra.Command {
 	buy.Flags().String("user", "", "ID of the user")
 	buy.MarkFlagRequired("user")
@@ -149,6 +153,7 @@ var purchases = &cobra.Command{
 	},
 }
 
+// Purchases configures and returns the purchases command
 func Purchases() *cobra.Command {
 	purchases.Flags().String("user", "", "ID of the user")
 	purchases.MarkFlagRequired("user")
@@ -160,6 +165,7 @@ var userCmd = &cobra.Command{
 	Short: "User manipulation commands",
 }
 
+// User configures and returns the user group
 func User() *cobra.Command {
 	userCmd.AddCommand(Add())
 	userCmd.AddCommand(Deposit())

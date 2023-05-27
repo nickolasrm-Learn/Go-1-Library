@@ -13,6 +13,7 @@ const (
 	Book Category = "book"
 )
 
+// Checks if the category is valid
 func (c Category) Validate() error {
 	switch c {
 	case CD, Book:
@@ -23,6 +24,7 @@ func (c Category) Validate() error {
 	return nil
 }
 
+// Product represents a product in the library
 type Product struct {
 	ID       string
 	Title    string
@@ -30,6 +32,9 @@ type Product struct {
 	Category Category
 }
 
+// New creates a new product
+//
+// It returns an error if the category is invalid
 func New(title string, price float64, category Category) (*Product, error) {
 	id := util.NewID()
 	err := category.Validate()
@@ -39,6 +44,7 @@ func New(title string, price float64, category Category) (*Product, error) {
 	return &Product{id, title, price, category}, nil
 }
 
+// String returns a string representation of the product
 func (p *Product) String() string {
 	return fmt.Sprintf("Product(title=%q, price=%v, category=%q, id=%q)", p.Title, p.Price, p.Category, p.ID)
 }

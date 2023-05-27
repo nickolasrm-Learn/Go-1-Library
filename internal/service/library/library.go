@@ -10,6 +10,7 @@ import (
 	"github.com/nickolasrm-Learn/Go-2-Library/internal/model/user"
 )
 
+// Library represents a collection of users, products and purchases
 type Library struct {
 	Users     map[string]*user.User
 	Products  map[string]*product.Product
@@ -18,6 +19,10 @@ type Library struct {
 
 var LibraryPath = "library.json"
 
+// Load a library object from a JSON file
+//
+// Returns nil if the file doesn't exist
+// Returns an error if the file exists but it's not a valid JSON
 func Load() (*Library, error) {
 	content, err := os.ReadFile(LibraryPath)
 	if err != nil {
@@ -31,6 +36,9 @@ func Load() (*Library, error) {
 	return &container, nil
 }
 
+// Save a library object to a JSON file
+//
+// Returns an error if the file can't be written
 func (l *Library) Save() error {
 	jsonString, err := json.MarshalIndent(l, "", "\t")
 	if err != nil {
@@ -43,6 +51,10 @@ func (l *Library) Save() error {
 	return nil
 }
 
+// New creates a new library object
+//
+// If a library file exists, it loads it
+// Otherwise, it creates a new empty library
 func New() (*Library, error) {
 	library, err := Load()
 	if err != nil {
@@ -58,12 +70,14 @@ func New() (*Library, error) {
 	return library, nil
 }
 
+// AddUser adds a new user to the library
 func (l *Library) AddUser(name string) *user.User {
 	usr := user.New(name)
 	l.Users[usr.ID] = usr
 	return usr
 }
 
+// AddProduct adds a new product to the library
 func (l *Library) AddProduct(title string, price float64, category product.Category) (*product.Product, error) {
 	prod, err := product.New(title, price, category)
 	if err != nil {
@@ -73,6 +87,7 @@ func (l *Library) AddProduct(title string, price float64, category product.Categ
 	return prod, nil
 }
 
+// ListProducts returns a list of all products in the library
 func (l *Library) ListProducts() []*product.Product {
 	lst := make([]*product.Product, len(l.Products))
 	i := 0
@@ -83,6 +98,7 @@ func (l *Library) ListProducts() []*product.Product {
 	return lst
 }
 
+// ListPurchases returns a list of all purchases made by a user
 func (l *Library) ListPurchases(usr *user.User) []*purchase.Purchase {
 	lst := make([]*purchase.Purchase, 0)
 	for _, v := range l.Purchases {
@@ -93,6 +109,7 @@ func (l *Library) ListPurchases(usr *user.User) []*purchase.Purchase {
 	return lst
 }
 
+// GetUser returns a user by its ID
 func (l *Library) GetUser(userID string) (*user.User, error) {
 	v, ok := l.Users[userID]
 	if ok {
@@ -101,6 +118,7 @@ func (l *Library) GetUser(userID string) (*user.User, error) {
 	return nil, fmt.Errorf("user not found")
 }
 
+// GetProduct returns a product by its ID
 func (l *Library) GetProduct(productID string) (*product.Product, error) {
 	v, ok := l.Products[productID]
 	if ok {
@@ -109,10 +127,14 @@ func (l *Library) GetProduct(productID string) (*product.Product, error) {
 	return nil, fmt.Errorf("product not found")
 }
 
+// Deposit adds value to user budget
 func (l *Library) Deposit(usr *user.User, value float64) {
 	usr.Deposit(value)
 }
 
+// Buy creates a new purchase from user and product
+//
+// Returns an error if user doesn't have enough budget
 func (l *Library) Buy(usr *user.User, prod *product.Product) (*purchase.Purchase, error) {
 	err := usr.Spend(prod.Price)
 	if err != nil {
