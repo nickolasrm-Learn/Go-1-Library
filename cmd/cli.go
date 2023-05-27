@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/nickolasrm-Learn/Go-2-Library/cmd/product"
+	"github.com/nickolasrm-Learn/Go-2-Library/cmd/user"
 	"github.com/spf13/cobra"
 )
 
@@ -21,23 +23,10 @@ var versionCmd = &cobra.Command{
 	},
 }
 
-var userCmd = &cobra.Command{
-	Use:   "user",
-	Short: "User manipulation commands",
-}
-
-var addUser = &cobra.Command{
-	Use:   "add",
-	Short: "Register an user to the library",
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("Here")
-	},
-}
-
 func Init() {
 	rootCmd.AddCommand(versionCmd)
-	rootCmd.AddCommand(userCmd)
-	userCmd.AddCommand(addUser)
+	rootCmd.AddCommand(product.Product())
+	rootCmd.AddCommand(user.User())
 }
 
 func Execute() {

@@ -8,10 +8,10 @@ import (
 
 type Purchase struct {
 	ID      string
-	User    *user.User
-	Product product.Product
+	User    string
+	Product string
 }
 
-func NewPurchase(user *user.User, prod product.Product) *Purchase {
-	return &Purchase{ID: util.NewID(), User: user, Product: prod}
+func New(user *user.User, prod *product.Product) *Purchase {
+	return &Purchase{ID: util.NewID(), User: user.ID, Product: prod.ID}
 }

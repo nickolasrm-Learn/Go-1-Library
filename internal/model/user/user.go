@@ -13,7 +13,7 @@ type User struct {
 }
 
 // Create a new user with random ID
-func NewUser(name string) *User {
+func New(name string) *User {
 	id := util.NewID()
 	return &User{ID: id, Name: name}
 }
@@ -23,9 +23,13 @@ func (u *User) Spend(value float64) error {
 		u.Budget -= value
 		return nil
 	}
-	return fmt.Errorf("User %q doesn't have enough budget", u.Name)
+	return fmt.Errorf("user %q doesn't have enough budget", u.Name)
 }
 
 func (u *User) Deposit(value float64) {
 	u.Budget += value
+}
+
+func (u *User) String() string {
+	return fmt.Sprintf("User(name=%q, budget=%v)", u.Name, u.Budget)
 }
